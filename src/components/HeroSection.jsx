@@ -31,8 +31,8 @@ import { Gsap, useGsapReducedMotion, useGsapScroll, useGsapTransform } from '../
 import { Terminal, Code2, Database, Cpu, Download, ArrowUpRight } from 'lucide-react';
 
 // Shared Intl formatter — created once, reused on every tick
-const jakartaFormatter = new Intl.DateTimeFormat('en-US', {
-  timeZone: 'Asia/Jakarta',
+const ghanaFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Africa/Accra',
   hour: '2-digit',
   minute: '2-digit',
   second: '2-digit',
@@ -47,7 +47,7 @@ const LocationTimeBadge = () => {
   useEffect(() => {
     const update = () => {
       if (timeRef.current) {
-        timeRef.current.textContent = jakartaFormatter.format(new Date());
+        timeRef.current.textContent = ghanaFormatter.format(new Date());
       }
     };
     update();
