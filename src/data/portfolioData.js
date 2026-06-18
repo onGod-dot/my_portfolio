@@ -19,7 +19,7 @@ export const PORTFOLIO_DATA = {
     profile: {
         name: "Cyril Jerry Baah",
         role: "Entrepreneurial Web Dev & AI/ML Expert",
-        bio: "I'm Cyril Jerry Baah, Entrepreneurial Web Dev & AI/ML Expert and Information Systems & Technology student with experience building and launching digital products. Founder of TardyDevs, a development brand focused on software solutions and digital innovation.",
+        bio: "I'm Cyril Jerry Baah, Entrepreneurial Web Dev & AI/ML Expert and Information Systems & Technology student with experience building and launching digital products. Co-Founder of TardyDevs, a development brand focused on software solutions and digital innovation.",
         location: "Ghana",
         email: "baahcyril2@gmail.com",
         socials: {

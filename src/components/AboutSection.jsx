@@ -261,7 +261,7 @@ const AboutSection = memo(function AboutSection() {
                 </span>
 
                 <span className="block text-[22px] sm:text-[26px] lg:text-[30px] xl:text-[34px] font-medium tracking-[-0.01em] text-black/55 mt-2">
-                  AI/ML Expert · Founder of TardyDevs
+                  AI/ML Expert · Co-Founder of TardyDevs
                 </span>
               </h2>
             </Gsap.div>
@@ -292,7 +292,7 @@ const AboutSection = memo(function AboutSection() {
                 I'm <strong className="text-black font-semibold">Cyril Jerry Baah</strong>, aka <strong className="text-black font-semibold">Snr Dev Cyril</strong> — Entrepreneurial Web Dev & AI/ML Expert and Information Systems & Technology student with experience building and launching digital products.
               </p>
               <p>
-                Founder of <strong className="text-black font-semibold">TardyDevs</strong>, a development brand focused on software solutions and digital innovation. Built projects such as Layerit, Buddy, and other applications spanning web development, AI-powered systems, and business-focused platforms.
+                Co-Founder of <strong className="text-black font-semibold">TardyDevs</strong>, a development brand focused on software solutions and digital innovation. Built projects such as Layerit, Buddy, and other applications spanning web development, AI-powered systems, and business-focused platforms.
               </p>
               <p>
                 Strong background in React, Node.js, Java, databases, and modern development workflows.

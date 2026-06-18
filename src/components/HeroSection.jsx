@@ -297,7 +297,7 @@ const HeroSection = memo(function HeroSection({ isRevealed = true }) {
             Building <span className="bg-lime-400/30 px-2 rounded-md ring-1 ring-lime-500/20">Digital</span> Products that Matter<span className="text-lime-500 font-extrabold -ml-1">.</span>
           </h2>
           <p className="font-sans text-base text-black/60 max-w-xl leading-7 mt-2 px-4">
-            Entrepreneurial Web Dev & AI/ML Expert · Founder of TardyDevs.
+            Entrepreneurial Web Dev & AI/ML Expert · Co-Founder of TardyDevs.
           </p>
         </Gsap.div>
 

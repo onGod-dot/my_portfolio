@@ -1,6 +1,6 @@
 # Snr Dev Cyril — Personal Portfolio
 
-The personal portfolio of **Cyril Jerry Baah**, also known as **Snr Dev Cyril** — Entrepreneurial Web Developer, AI/ML Expert, and founder of [TardyDevs](https://www.tardydevs.com).
+The personal portfolio of **Cyril Jerry Baah**, also known as **Snr Dev Cyril** — Entrepreneurial Web Developer, AI/ML Expert, and co-founder of [TardyDevs](https://www.tardydevs.com).
 
 Built with React, Vite, Tailwind CSS, GSAP, and Lenis smooth scroll.
 
