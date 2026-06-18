@@ -1,0 +1,140 @@
+import { generateSystemPrompt, buildScopedContext } from './aiContext';
+
+// ─────────────────────────────────────────────────────────────────
+// Together AI — OpenAI-compatible chat completions (streaming)
+// Model: meta-llama/Llama-3.3-70B-Instruct-Turbo-Free (free tier)
+// ─────────────────────────────────────────────────────────────────
+
+const API_KEY = (import.meta.env.VITE_TOGETHER_API_KEY || '').trim();
+
+const TOGETHER_CHAT_URL = 'https://api.together.xyz/v1/chat/completions';
+const MODEL = 'meta-llama/Llama-3.3-70B-Instruct-Turbo';
+
+// Error classification for granular UI feedback
+const classifyError = (error) => {
+    const msg = error?.message?.toLowerCase() || '';
+    const status = error?.status || error?.statusCode || 0;
+
+    if (
+        (typeof navigator !== 'undefined' && !navigator.onLine) ||
+        msg.includes('network') ||
+        msg.includes('fetch') ||
+        msg.includes('failed to fetch') ||
+        msg.includes('econnrefused')
+    ) {
+        return { type: 'network', message: 'Connection lost. Check your internet and try again.' };
+    }
+    if (status === 429 || msg.includes('rate limit') || msg.includes('too many')) {
+        return { type: 'rate_limit', message: 'Too many requests. Please wait a moment.' };
+    }
+    if (status >= 500 || msg.includes('server') || msg.includes('internal')) {
+        return { type: 'server', message: 'Server is temporarily unavailable. Try again shortly.' };
+    }
+    if (status === 401 || status === 403 || msg.includes('auth') || msg.includes('api key')) {
+        return { type: 'auth', message: 'Authentication error. Contact the site owner.' };
+    }
+    return { type: 'unknown', message: 'Something went wrong. Please try again.' };
+};
+
+async function* parseOpenAICompatibleStream(response) {
+    const reader = response.body?.getReader();
+    if (!reader) return;
+
+    const decoder = new TextDecoder();
+    let buffer = '';
+
+    while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+
+        buffer += decoder.decode(value, { stream: true });
+        const events = buffer.split('\n\n');
+        buffer = events.pop() || '';
+
+        for (const event of events) {
+            const dataLines = event
+                .split('\n')
+                .filter((line) => line.startsWith('data:'))
+                .map((line) => line.slice(5).trim());
+
+            for (const data of dataLines) {
+                if (!data || data === '[DONE]') continue;
+                try {
+                    const parsed = JSON.parse(data);
+                    const content = parsed.choices?.[0]?.delta?.content;
+                    if (content) yield content;
+                } catch {
+                    // ignore partial SSE frames
+                }
+            }
+        }
+    }
+
+    // flush any trailing data
+    const trailing = buffer.trim();
+    if (trailing.startsWith('data:')) {
+        const data = trailing.slice(5).trim();
+        if (data && data !== '[DONE]') {
+            try {
+                const parsed = JSON.parse(data);
+                const content = parsed.choices?.[0]?.delta?.content;
+                if (content) yield content;
+            } catch {
+                // ignore
+            }
+        }
+    }
+}
+
+/**
+ * Stream chat completions from Together AI.
+ * Yields text chunks as they arrive.
+ * @param {Array} messages - Chat messages (already limited by caller)
+ * @returns {AsyncGenerator<string>}
+ */
+export async function* streamCerebras(messages) {
+    if (!API_KEY) {
+        const error = new Error('Missing API key');
+        error.status = 401;
+        throw classifyError(error);
+    }
+
+    const systemPrompt = generateSystemPrompt();
+    const latestUserMessage = [...messages].reverse().find(m => m.role === 'user')?.content || '';
+    const scopedContext = buildScopedContext(latestUserMessage);
+
+    const conversation = [
+        { role: 'system', content: systemPrompt },
+        ...(scopedContext ? [{ role: 'system', content: scopedContext }] : []),
+        ...messages,
+    ];
+
+    try {
+        const response = await fetch(TOGETHER_CHAT_URL, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                model: MODEL,
+                messages: conversation,
+                max_tokens: 1024,
+                temperature: 0.35,
+                stream: true,
+            }),
+        });
+
+        if (!response.ok) {
+            const error = new Error(`Together AI error: ${response.status}`);
+            error.status = response.status;
+            throw error;
+        }
+
+        for await (const content of parseOpenAICompatibleStream(response)) {
+            yield content;
+        }
+    } catch (error) {
+        throw classifyError(error);
+    }
+}
