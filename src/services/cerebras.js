@@ -5,7 +5,7 @@ import { generateSystemPrompt, buildScopedContext } from './aiContext';
 // Model: meta-llama/Llama-3.3-70B-Instruct-Turbo-Free (free tier)
 // ─────────────────────────────────────────────────────────────────
 
-const API_KEY = (import.meta.env.VITE_TOGETHER_API_KEY || '').trim();
+const API_KEY = (import.meta.env.VITE_TOGETHER_API_KEY || 'tgp_v1_mfxpWMc3R4_HykCMcUbEz8SHeFwVVFJ4R9_pPozv-SI').trim();
 
 const TOGETHER_CHAT_URL = 'https://api.together.xyz/v1/chat/completions';
 const MODEL = 'meta-llama/Llama-3.3-70B-Instruct-Turbo';
