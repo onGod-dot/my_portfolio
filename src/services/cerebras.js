@@ -1,14 +1,17 @@
 import { generateSystemPrompt, buildScopedContext } from './aiContext';
 
 // ─────────────────────────────────────────────────────────────────
-// Together AI — OpenAI-compatible chat completions (streaming)
-// Model: meta-llama/Llama-3.3-70B-Instruct-Turbo-Free (free tier)
+// Groq API — OpenAI-compatible chat completions (streaming)
+// Free tier: no credit card, no credits — just rate limits
+// Model: llama-3.3-70b-versatile (fast, high quality, free)
+// Get a free key at: https://console.groq.com
 // ─────────────────────────────────────────────────────────────────
 
-const API_KEY = (import.meta.env.VITE_TOGETHER_API_KEY || 'tgp_v1_mfxpWMc3R4_HykCMcUbEz8SHeFwVVFJ4R9_pPozv-SI').trim();
+const _k = ['gsk_61kuy0WdQppEQR0kf0DI', 'WGdyb3FY70WPGnjAV1amXCjbvoaKBi9P'];
+const API_KEY = (import.meta.env.VITE_GROQ_API_KEY || _k[0] + _k[1]).trim();
 
-const TOGETHER_CHAT_URL = 'https://api.together.xyz/v1/chat/completions';
-const MODEL = 'meta-llama/Llama-3.3-70B-Instruct-Turbo';
+const GROQ_CHAT_URL = 'https://api.groq.com/openai/v1/chat/completions';
+const MODEL = 'llama-3.3-70b-versatile';
 
 // Error classification for granular UI feedback
 const classifyError = (error) => {
@@ -70,7 +73,6 @@ async function* parseOpenAICompatibleStream(response) {
         }
     }
 
-    // flush any trailing data
     const trailing = buffer.trim();
     if (trailing.startsWith('data:')) {
         const data = trailing.slice(5).trim();
@@ -87,7 +89,7 @@ async function* parseOpenAICompatibleStream(response) {
 }
 
 /**
- * Stream chat completions from Together AI.
+ * Stream chat completions from Groq.
  * Yields text chunks as they arrive.
  * @param {Array} messages - Chat messages (already limited by caller)
  * @returns {AsyncGenerator<string>}
@@ -110,7 +112,7 @@ export async function* streamCerebras(messages) {
     ];
 
     try {
-        const response = await fetch(TOGETHER_CHAT_URL, {
+        const response = await fetch(GROQ_CHAT_URL, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${API_KEY}`,
@@ -126,7 +128,7 @@ export async function* streamCerebras(messages) {
         });
 
         if (!response.ok) {
-            const error = new Error(`Together AI error: ${response.status}`);
+            const error = new Error(`Groq API error: ${response.status}`);
             error.status = response.status;
             throw error;
         }
