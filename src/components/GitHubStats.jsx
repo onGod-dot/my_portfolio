@@ -4,9 +4,9 @@ import { Calendar, Code, ExternalLink, Users, Terminal } from 'lucide-react';
 
 const GITHUB_USERNAME = 'onGod-dot';
 const GITHUB_PROFILE_URL = `https://github.com/${GITHUB_USERNAME}`;
-const HEATMAP_DAYS = 364;
-const COLS = 52;
-const ROWS = 7;
+const HEATMAP_DAYS = 30;
+const COLS = 6;
+const ROWS = 5;
 
 // Color palette matching the dark engineering theme
 const LEVEL_COLORS = {
@@ -123,7 +123,7 @@ const GitHubStats = memo(function GitHubStats() {
                 if (contribJson.contributions) {
                     const allDays = contribJson.contributions;
                     const total = allDays.reduce((acc, day) => acc + day.count, 0);
-                    setContributionData(allDays.slice(-364));
+                    setContributionData(allDays.slice(-30));
                     setTotalContributions(total);
                 }
 
@@ -277,7 +277,7 @@ const GitHubStats = memo(function GitHubStats() {
                         <div className="flex justify-between items-start border-b border-white/10 pb-6 mb-8">
                             <div>
                                 <h3 className="text-xl md:text-2xl font-bold uppercase text-white tracking-tight">System_Log</h3>
-                                <p className="font-sans text-sm md:text-sm text-white/55 mt-2">Annual code contribution density (last 12 months)</p>
+                                <p className="font-sans text-sm md:text-sm text-white/55 mt-2">Code contribution density (last 30 days)</p>
                             </div>
                             <div className="hidden sm:flex items-center gap-2 font-mono text-xs uppercase tracking-[0.12em] md:tracking-[0.16em] text-white/40">
                                 Less
