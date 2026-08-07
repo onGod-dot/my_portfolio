@@ -53,6 +53,24 @@ export const PROJECT_META = [
     img: "/Past works /teki.png",
     previewUrl: "https://teki-essentials.lovable.app/",
   },
+  {
+    id: 7,
+    slug: "umat-clinic",
+    title: "Umat Clinic",
+    category: "Healthcare DSS",
+    color: "bg-emerald-400",
+    img: "/Past works /Umat Clinic.png",
+    previewUrl: "https://umat-clinic.vercel.app/auth",
+  },
+  {
+    id: 8,
+    slug: "is-club",
+    title: "IS Club UMaT",
+    category: "Ed-Tech Platform",
+    color: "bg-indigo-400",
+    img: "/Past works /IS CLUB.png",
+    previewUrl: "https://is-clubumat.vercel.app/",
+  },
 ];
 
 export const PROJECT_META_BY_SLUG = PROJECT_META.reduce((accumulator, item) => {

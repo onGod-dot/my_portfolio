@@ -8,6 +8,8 @@ const PROJECT_DETAIL_COMPONENTS = {
   "buddy": lazy(() => import("./BuddyDetail")),
   "phastor": lazy(() => import("./PhastorDetail")),
   "teki": lazy(() => import("./TekiDetail")),
+  "umat-clinic": lazy(() => import("./UmatClinicDetail")),
+  "is-club": lazy(() => import("./IsClubDetail")),
 };
 
 export function getProjectRouteConfig(slug) {
