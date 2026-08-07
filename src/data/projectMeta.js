@@ -68,7 +68,7 @@ export const PROJECT_META = [
     title: "IS Club UMaT",
     category: "Ed-Tech Platform",
     color: "bg-indigo-400",
-    img: "/Past works /IS Club UMaT .png",
+    img: "/Past works /isclub.png",
     previewUrl: "https://is-clubumat.vercel.app/",
   },
 ];
