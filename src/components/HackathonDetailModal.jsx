@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 import {
     X, Trophy, ChevronLeft, ChevronRight,
     Users, Zap, Shield, Gamepad2,
-    Coins, Layers
+    Coins, Layers, ExternalLink
 } from 'lucide-react';
 
 /* ─── Image data ───────── */
@@ -222,6 +222,16 @@ export default function HackathonDetailModal({ isOpen, onClose }) {
                                     Placed 2nd at the 4-hour ACSES Hackathon 2026, building a full-stack solution from scratch
                                     under time pressure, delivering a working, polished product that stood out among all competing teams.
                                 </p>
+
+                                <a
+                                    href="https://careerpilot-rose.vercel.app/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="mt-8 inline-flex items-center gap-3 bg-black text-white px-7 py-3.5 font-mono text-xs font-bold uppercase tracking-[0.16em] hover:bg-lime-400 hover:text-black transition-all duration-300 group"
+                                >
+                                    View Live Demo
+                                    <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                                </a>
                             </div>
 
                             {/* Image gallery */}
