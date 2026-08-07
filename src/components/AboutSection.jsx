@@ -3,6 +3,7 @@ import { Gsap } from '../utils/gsapAnimate';
 import { Trophy, ArrowUpRight, MapPin } from 'lucide-react';
 
 const HackathonDetailModal = lazy(() => import('./HackathonDetailModal'));
+const HackathonDetailModal2 = lazy(() => import('./HackathonDetailModal2'));
 
 /* ─────────────────────────────────────────
    Static data
@@ -16,6 +17,17 @@ const achievements = [
     event: 'ACSES Hackathon 2026',
     year: '2026',
     description: 'Placed 2nd at the 4-hour ACSES Hackathon 2026. Theme: Leveraging Technology and Innovation for Sustainable Development.',
+    modalKey: 'acses',
+  },
+  {
+    icon: Trophy,
+    rank: '3rd Runner-Up',
+    category: 'Hackathon',
+    title: '3rd Runner-Up',
+    event: 'Hackathon 2025',
+    year: '2025',
+    description: 'Placed 3rd runner-up at a competitive hackathon, building a full-stack solution from scratch under time pressure.',
+    modalKey: 'prev',
   },
   {
     icon: Trophy,
@@ -25,6 +37,7 @@ const achievements = [
     event: 'University of Mines and Technology',
     year: '2026',
     description: 'Appointed as President of the Information Systems Club at the University of Mines and Technology, leading initiatives in tech education and community building.',
+    modalKey: null,
   },
 ];
 
@@ -135,6 +148,12 @@ const AchievementCard = ({ achievement, index, onClick }) => {
    ───────────────────────────────────────── */
 const AboutSection = memo(function AboutSection() {
   const [showHackathonDetail, setShowHackathonDetail] = useState(false);
+  const [showHackathonDetail2, setShowHackathonDetail2] = useState(false);
+
+  const handleAchievementClick = (modalKey) => {
+    if (modalKey === 'acses') setShowHackathonDetail(true);
+    if (modalKey === 'prev') setShowHackathonDetail2(true);
+  };
 
   return (
     <section id="about-section" className="py-20 md:py-28 w-full relative bg-[#FAF9F6] overflow-hidden">
@@ -350,7 +369,7 @@ const AboutSection = memo(function AboutSection() {
                       key={index}
                       achievement={achievement}
                       index={index}
-                      onClick={achievement.category === 'Hackathon' ? () => setShowHackathonDetail(true) : undefined}
+                      onClick={achievement.modalKey ? () => handleAchievementClick(achievement.modalKey) : undefined}
                     />
                   ))}
                 </div>
@@ -361,11 +380,17 @@ const AboutSection = memo(function AboutSection() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Modals */}
       <Suspense fallback={null}>
         <HackathonDetailModal
           isOpen={showHackathonDetail}
           onClose={() => setShowHackathonDetail(false)}
+        />
+      </Suspense>
+      <Suspense fallback={null}>
+        <HackathonDetailModal2
+          isOpen={showHackathonDetail2}
+          onClose={() => setShowHackathonDetail2(false)}
         />
       </Suspense>
 
