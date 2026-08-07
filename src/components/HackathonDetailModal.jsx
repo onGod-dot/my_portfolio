@@ -9,21 +9,22 @@ import {
 
 /* ─── Image data ───────── */
 const galleryImages = [
-    { src: '/hackathon-base/Image.jpg', alt: 'Hackathon - Award Ceremony' },
-    { src: '/hackathon-base/image2.jpg', alt: 'Hackathon - Project Presentation' },
-    { src: '/hackathon-base/IMG_5812.JPG', alt: 'Hackathon - Team Photo' },
-    { src: '/hackathon-base/IMG_5826.JPG', alt: 'Hackathon - Event Highlights' },
+    { src: '/hackathon-base/ACSES HACKATHON/IMG_1659 2.JPG', alt: 'ACSES Hackathon 2026 - Event' },
+    { src: '/hackathon-base/ACSES HACKATHON/IMG_1665.JPG', alt: 'ACSES Hackathon 2026 - Presentation' },
+    { src: '/hackathon-base/ACSES HACKATHON/IMG_1666.JPG', alt: 'ACSES Hackathon 2026 - Team' },
+    { src: '/hackathon-base/ACSES HACKATHON/IMG_9145.JPG', alt: 'ACSES Hackathon 2026 - Award Ceremony' },
+    { src: '/hackathon-base/ACSES HACKATHON/IMG_9178.JPG', alt: 'ACSES Hackathon 2026 - Highlights' },
 ];
 
 const techStack = ['React', 'Node.js', 'Tailwind CSS', 'JavaScript', 'REST API'];
 
 const highlights = [
-    { icon: Gamepad2, label: 'Problem Solving', desc: 'Built a solution tackling a real-world challenge' },
-    { icon: Coins, label: '3rd Runner-Up', desc: 'Placed 3rd runner-up out of all competing teams' },
-    { icon: Shield, label: 'Full-Stack Build', desc: 'End-to-end product built under hackathon conditions' },
+    { icon: Gamepad2, label: 'Problem Solving', desc: 'Built a solution tackling sustainable development with technology' },
+    { icon: Coins, label: '2nd Place', desc: 'Placed 2nd out of all competing teams at ACSES Hackathon 2026' },
+    { icon: Shield, label: 'Full-Stack Build', desc: 'End-to-end product built under 4-hour hackathon conditions' },
     { icon: Layers, label: 'Clean UI/UX', desc: 'Polished, user-friendly interface delivered under time pressure' },
-    { icon: Users, label: 'Team Collaboration', desc: 'Coordinated effectively as a team to hit the deadline' },
-    { icon: Zap, label: 'Rapid Delivery', desc: 'Shipped a working, demo-ready product within the time limit' },
+    { icon: Users, label: 'Team Collaboration', desc: 'Coordinated effectively as a team to hit the tight deadline' },
+    { icon: Zap, label: 'Rapid Delivery', desc: 'Shipped a working, demo-ready product within 4 hours' },
 ];
 
 const links = {};
@@ -187,7 +188,7 @@ export default function HackathonDetailModal({ isOpen, onClose }) {
                                 <div className="flex items-center gap-3">
                                     <span className="font-mono text-[10px] uppercase font-bold tracking-[0.12em] md:tracking-[0.16em] text-[#000] flex items-center gap-2">
                                         <Trophy size={14} className="text-lime-500" />
-                                        3rd Runner-Up
+                                        2nd Place · ACSES Hackathon 2026
                                     </span>
                                 </div>
                                 <button
@@ -206,19 +207,21 @@ export default function HackathonDetailModal({ isOpen, onClose }) {
                             {/* Title block */}
                             <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
                                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] md:tracking-[0.26em] text-black/40 mb-4">
-                                    Hackathon Achievement
+                                    ACSES Hackathon 2026
                                 </p>
 
                                 <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter text-black mb-6">
-                                    3RD <span className="text-transparent" style={{ WebkitTextStroke: '2px black' }}>RUNNER-UP</span>
+                                    2ND <span className="text-transparent" style={{ WebkitTextStroke: '2px black' }}>PLACE</span>
                                 </h1>
 
-                                <p className="text-base md:text-lg leading-7 md:leading-8 text-black/60 max-w-2xl mx-auto">
-                                    Placed 3rd runner-up at a competitive hackathon, building a full-stack solution from scratch
-                                    under time pressure, delivering a working, polished product that stood out among all competing teams.
+                                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-black/50 mb-4">
+                                    Theme: Leveraging Technology and Innovation for Sustainable Development
                                 </p>
 
-                                {/* No external links */}
+                                <p className="text-base md:text-lg leading-7 md:leading-8 text-black/60 max-w-2xl mx-auto">
+                                    Placed 2nd at the 4-hour ACSES Hackathon 2026, building a full-stack solution from scratch
+                                    under time pressure, delivering a working, polished product that stood out among all competing teams.
+                                </p>
                             </div>
 
                             {/* Image gallery */}
@@ -236,9 +239,9 @@ export default function HackathonDetailModal({ isOpen, onClose }) {
                                             <span className="w-6 h-[1px] bg-black/20" /> The Challenge
                                         </h2>
                                         <p className="text-base leading-relaxed text-black/80">
-                                            Competing in a time-boxed hackathon environment meant ideating, designing, building,
+                                            Competing in a 4-hour hackathon meant ideating, designing, building,
                                             and presenting a complete product within strict time limits, all while ensuring
-                                            the solution was practical, well-executed, and clearly communicated to judges.
+                                            the solution addressed the theme of leveraging technology for sustainable development.
                                         </p>
                                     </div>
 
@@ -248,8 +251,8 @@ export default function HackathonDetailModal({ isOpen, onClose }) {
                                         </h2>
                                         <ul className="space-y-4">
                                             {[
-                                                'A full-stack web application solving a real-world problem.',
-                                                'Clean, user-friendly interface designed and built under pressure.',
+                                                'A full-stack web application aligned with sustainable development goals.',
+                                                'Clean, user-friendly interface designed and built under 4-hour pressure.',
                                                 'End-to-end functionality from frontend to backend, fully demo-ready.',
                                                 'Clear presentation that communicated the value and impact of the solution.'
                                             ].map((item, i) => (

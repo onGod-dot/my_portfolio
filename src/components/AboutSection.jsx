@@ -10,12 +10,12 @@ const HackathonDetailModal = lazy(() => import('./HackathonDetailModal'));
 const achievements = [
   {
     icon: Trophy,
-    rank: '3rd Runner-Up',
+    rank: '2nd Place',
     category: 'Hackathon',
-    title: '3rd Runner-Up',
-    event: 'Hackathon Achievement',
-    year: '2025',
-    description: 'Placed 3rd runner-up at a competitive hackathon, building a full-stack solution from scratch under time pressure.',
+    title: '2nd Place',
+    event: 'ACSES Hackathon 2026',
+    year: '2026',
+    description: 'Placed 2nd at the 4-hour ACSES Hackathon 2026. Theme: Leveraging Technology and Innovation for Sustainable Development.',
   },
   {
     icon: Trophy,
