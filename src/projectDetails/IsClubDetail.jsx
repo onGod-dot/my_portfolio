@@ -3,7 +3,7 @@ import ProjectCaseLayout from "../components/projects/ProjectCaseLayout";
 export const project = {
   title: "IS Club UMaT",
   category: "Ed-Tech Platform",
-  heroImg: "/Past works /IS CLUB.png",
+  heroImg: "/Past works /IS Club UMaT .png",
   tagline:
     "A learning platform built for the Information Systems and Technology Club at UMaT, providing members and students with curated roadmaps, resources, and learning materials.",
   year: "2026",
